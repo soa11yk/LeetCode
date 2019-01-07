@@ -7,20 +7,26 @@ class Solution:
         ss = [] #needs to resovle situation where longest substring starts in the middle
         ss2 = []
         i = 0
-        i2 = len(s)-1
         l = list(s)
+        
         for l[i] in l:
             if l[i] not in ss:
                 ss.append (l[i])
                 i +=1
-        for l[i2] in l:
-            if l[i2] not in ss2:
-                ss2.append (l[i2])
-                i2 -=1
         
+        t = i-1
+        print (t)
+            
+        for l[t] in l:
+            if l[t] not in ss2:
+                ss2.append (l[t])
+                t+=1
+          
+                
+                
         if len(ss) >= len(ss2):
-            return (len(ss))
+            return len(ss)
+        if len(ss) < len(ss2):
+            return len(ss2)
         else:
-            return (ss2)
-
-
+            return len(s)
