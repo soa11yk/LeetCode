@@ -4,9 +4,49 @@ class Solution:
         :type s: str
         :rtype: int
         """
-        n, m = 0, {"M": 1000, "CM": 900, "D": 500, "CD": 400, "C": 100, "XC": 90, "L": 50, "XL": 40, "X": 10, "IX": 9,"V": 5, "IV": 4, "I": 1}
-        while s:
-            i = 2 if s[:2] in m else 1
-            n += m[s[:i]]
-            s = s[i:]
-        return n
+        ret = 0
+        prev_c = 0
+        for c in s:
+            if c == 'I':
+                ret += 1
+            elif c == 'V':
+                if prev_c == 'I':
+                    ret -= 1 
+                    ret += 4
+                else:
+                    ret += 5
+            elif c == 'X':
+                if prev_c == 'I':
+                    ret -= 1 
+                    ret += 9
+                else:
+                    ret += 10
+            elif c == 'L':
+                if prev_c == 'X':
+                    ret -= 10 
+                    ret += 40
+                else:
+                    ret += 50
+            elif c == 'C':
+                if prev_c == 'X':
+                    ret -= 10
+                    ret += 90
+                else:
+                    ret += 100
+            elif c == 'D':
+                if prev_c == 'C':
+                    ret -= 100
+                    ret += 400
+                else:
+                    ret += 500
+            elif c == 'M':
+                if prev_c == 'C':
+                    ret -= 100
+                    ret += 900
+                else:
+                    ret += 1000
+            else:
+                raise Exception('wrong char encountered')
+            
+            prev_c = c
+        return ret
