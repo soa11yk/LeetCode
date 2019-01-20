@@ -1,6 +1,6 @@
 class Solution {
     public String longestPalindrome(String s) {  //Expand around centre - only 2n-1 centres as the centre of plaindrome can only be in between two letters
-        
+        //Such palindromes have even number of letters (such as "abba") and its center are between the two 'b's.
     if (s == null || s.length() < 1) return "";
     int start = 0, end = 0;
         
