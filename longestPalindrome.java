@@ -1,5 +1,5 @@
 class Solution {
-    public String longestPalindrome(String s) {
+    public String longestPalindrome(String s) {  //Expand around centre - only 2n-1 centres as the centre of plaindrome can only be in between two letters
         
     if (s == null || s.length() < 1) return "";
     int start = 0, end = 0;
