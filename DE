@@ -1,0 +1,20 @@
+import docx
+import glob
+import os
+import re
+
+folder = '/Users/primary/Downloads/docs'
+
+def get_sentences(xmlstr: str) -> list:
+    result = []
+    for m in re.findall(r"(?:<w:body>|(?<=[.][ ]))[^.]*<w:b/>[^.]*?</w:r>", xmlstr):
+        raw_text = re.sub(r"(<[^>]*>|\n|\t|[ ][ ]|^[ ])", "", m)
+        result.append(raw_text)
+    return result
+
+docxfiles = list(glob.glob(f"{folder}/*.docx"))
+for f in docxfiles:
+    xmldoc = docx.Document(f)._element.xml
+    s = get_sentences(xmldoc)
+    print(f"filename: {f}")
+    print("\n\n".join(s))
